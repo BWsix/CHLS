@@ -13,13 +13,13 @@ const useStyles = makeStyles((theme: Theme) => ({
 interface NewsGroupProps {}
 
 export const NewsGroup: React.FC<NewsGroupProps> = ({}) => {
-  const classes = useStyles();
   const [value, setValue] = useState(0);
   const [uid, setUid] = useState(UidTable[0].uid);
 
+  const classes = useStyles();
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="default">
+      <AppBar position="static" color="primary">
         <Tabs
           value={value}
           onChange={(_, newValue: number) => {
@@ -27,9 +27,9 @@ export const NewsGroup: React.FC<NewsGroupProps> = ({}) => {
             setUid(UidTable[newValue].uid);
           }}
           indicatorColor="primary"
-          textColor="primary"
+          textColor="inherit"
           variant="scrollable"
-          scrollButtons="auto"
+          scrollButtons="on"
         >
           {UidTable.map(({ name, uid }) => {
             return <Tab label={name} key={uid} />;

@@ -28,8 +28,10 @@ export const NewsList: React.FC<{ uid: string }> = ({ uid }) => {
         />
       </div>
 
-      {uniq(newsList.map((news) => news.publish_date)).map(
-        (publishDateString, idx) => {
+      {uniq(newsList.map((news) => news.publish_date))
+        .sort((a, b) => b.localeCompare(a))
+        .slice(0, 4)
+        .map((publishDateString, idx) => {
           return (
             <React.Fragment key={idx}>
               <Typography
@@ -37,19 +39,22 @@ export const NewsList: React.FC<{ uid: string }> = ({ uid }) => {
                 color="textSecondary"
                 style={{ marginTop: "16px" }}
               >
-                {publishDateString}
+                {idx === 3 ? "更早以前" : publishDateString}
               </Typography>
               <Divider />
 
               {newsList
-                .filter((news) => news.publish_date === publishDateString)
+                .filter((news) =>
+                  idx === 3
+                    ? news.publish_date <= publishDateString
+                    : news.publish_date === publishDateString
+                )
                 .map((news, idx) => {
                   return <News news={news} key={idx} />;
                 })}
             </React.Fragment>
           );
-        }
-      )}
+        })}
     </div>
   );
 };

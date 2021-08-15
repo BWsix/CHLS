@@ -46,7 +46,15 @@ export const News: React.FC<{ news: News }> = ({ news }) => {
   return (
     <Accordion expanded={toggle} onChange={() => setToggle((prev) => !prev)}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <InfoIcon color={news.views >= 420 ? "primary" : undefined} />
+        <InfoIcon
+          color={
+            news.views >= 420
+              ? "primary"
+              : news.is_pinned
+              ? "secondary"
+              : undefined
+          }
+        />
         <Typography className={classes.heading}>{news.title}</Typography>
       </AccordionSummary>
 
