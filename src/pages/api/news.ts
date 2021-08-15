@@ -3,15 +3,17 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 const API_NEWS =
   "https://www.clhs.tyc.edu.tw/ischool/widget/site_news/news_query_json.php";
-const uid = "WID_549_2_3e2e399a2649fb6ba9918090490f4741fd4453bf";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  const page = req.body.page as number;
+  const uid = req.body.uid as string;
+
   const result = await axios.post(
     API_NEWS,
-    `field=time&order=DESC&pageNum=${0}&maxRows=${10}&keyword=&uid=${uid}&tf=1&auth_type=user&use_cache=1`,
+    `field=time&order=DESC&pageNum=${page}&maxRows=${10}&keyword=&uid=${uid}&tf=1&auth_type=user&use_cache=1`,
     {
       headers: {
         "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
@@ -43,5 +45,5 @@ export default async function handler(
       } as News)
   );
 
-  res.status(200).json(newsList);
+  res.status(200).json({ meta, newsList });
 }

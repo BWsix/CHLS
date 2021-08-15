@@ -1,0 +1,11 @@
+.content * {
+  color: inherit !important;
+  font-size: inherit !important;
+  font-family: inherit !important;
+  font-weight: inherit !important;
+  text-decoration: inherit !important;
+  background: hsla(0, 0%, 0%, 0) !important;
+
+  word-wrap: break-word !important;
+  max-width: 85vw !important;
+}
