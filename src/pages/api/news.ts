@@ -13,7 +13,7 @@ export default async function handler(
 
   const result = await axios.post(
     API_NEWS,
-    `field=time&order=DESC&pageNum=${page}&maxRows=${10}&keyword=&uid=${uid}&tf=1&auth_type=user&use_cache=1`,
+    `field=time&order=DESC&pageNum=${page}&maxRows=${15}&keyword=&uid=${uid}&tf=1&auth_type=user&use_cache=1`,
     {
       headers: {
         "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
