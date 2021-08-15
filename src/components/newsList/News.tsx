@@ -12,10 +12,13 @@ import {
   Button,
   LinearProgress,
   Divider,
+  Chip,
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import InfoIcon from "@material-ui/icons/Info";
+import LinkIcon from "@material-ui/icons/Link";
 import Alert from "@material-ui/lab/Alert";
+
 import styles from "./News.module.css";
 
 const API_NEWS =
@@ -26,6 +29,9 @@ const useStyles = makeStyles((theme: Theme) =>
     heading: {
       marginLeft: "16px",
       fontSize: theme.typography.pxToRem(15),
+    },
+    chip: {
+      marginRight: "5px",
     },
   })
 );
@@ -40,7 +46,7 @@ export const News: React.FC<{ news: News }> = ({ news }) => {
   return (
     <Accordion expanded={toggle} onChange={() => setToggle((prev) => !prev)}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <InfoIcon color={news.views > 400 ? "secondary" : undefined} />
+        <InfoIcon color={news.views >= 420 ? "primary" : undefined} />
         <Typography className={classes.heading}>{news.title}</Typography>
       </AccordionSummary>
 
@@ -49,15 +55,28 @@ export const News: React.FC<{ news: News }> = ({ news }) => {
       ) : (
         <>
           <AccordionDetails>
+            <Chip
+              label={news.office + " " + news.type}
+              className={classes.chip}
+              variant="outlined"
+            />
+            <Chip
+              label={`${news.views} 次瀏覽`}
+              color={news.views >= 420 ? "primary" : undefined}
+              variant="outlined"
+              className={classes.chip}
+            />
             <Button
               size="small"
               variant="contained"
+              color="primary"
+              startIcon={<LinkIcon />}
               onClick={() => {
                 const win = window.open(API_NEWS + news.id, "_blank");
                 win!.opener = null;
               }}
             >
-              前往公告頁面查看公告 / 附件
+              查看公告{newsAttachments?.length ? " (附件)" : undefined}
             </Button>
           </AccordionDetails>
 
