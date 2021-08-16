@@ -51,7 +51,7 @@ export const Navbar: React.FC<NavbarProps> = ({ sections, title }) => {
         </Typography>
         <IconButton>
           <Link
-            href="https://github.com/BWsix/CHLS-homepage"
+            href="https://github.com/BWsix/CHLS"
             color="inherit"
             target="_blank"
             rel="noopener noreferrer"
