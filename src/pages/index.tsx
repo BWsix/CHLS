@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { Calendar, Navbar, NewsGroup, Banner } from "../components";
+import { Calendar, Navbar, NewsGroup, Banner, Footer } from "../components";
 import Head from "next/head";
 
 import { Container } from "@material-ui/core";
@@ -43,6 +43,8 @@ const Home: NextPage = () => {
         <MainTitle title="官方行事曆" />
         <Calendar />
       </Container>
+
+      <Footer />
     </>
   );
 };
