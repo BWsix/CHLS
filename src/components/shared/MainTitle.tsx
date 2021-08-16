@@ -7,7 +7,12 @@ interface MainTitleProps {
 
 export const MainTitle: React.FC<MainTitleProps> = ({ title }) => {
   return (
-    <Typography component="h1" variant="h3" style={{ padding: "16px 0" }}>
+    <Typography
+      component="h1"
+      variant="h3"
+      color="textSecondary"
+      style={{ padding: "16px 0" }}
+    >
       <b>{title}</b>
     </Typography>
   );
