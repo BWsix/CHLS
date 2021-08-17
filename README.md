@@ -1,34 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 中壢大中官方網站
 
-## Getting Started
+![](https://i.imgur.com/bYjtKKe.png)
 
-First, run the development server:
+## 特色
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+- 與官網同步的公告欄
+- 社團 / 校隊資訊頁面
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 新增你的社團 / 校隊資訊
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+歡迎發送 pull request 將你的社團 / 校隊資訊加入中壢大中官方網站  
+新增的話在 `posts` 資料夾加入 `網址.md` 就可以了  
+如果遇到問題或是想要討論也可以發 issue，我有看到就會回覆 🧐
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## markdown meta tag 欄位說明
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+可以參考 [clcp.md](./posts/clcp.md)
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+|    欄位     | 說明                                | 必填 |
+| :---------: | ----------------------------------- | :--: |
+|    title    | 標題                                |  是  |
+| description | 簡介                                |  是  |
+|    image    | 背景圖片，大小盡量不要超過 1280x640 |  是  |
+|   website   | 社團 / 校隊官方網站                 |  否  |
+|  instagram  | 社團 / 校隊 instagram 頁面**網址**  |  否  |
+|  facebook   | 社團 / 校隊 facebook 頁面**網址**   |  否  |
+|   github    | 社團 / 校隊 github 頁面**網址**     |  否  |
