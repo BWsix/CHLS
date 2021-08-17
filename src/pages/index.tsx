@@ -1,34 +1,24 @@
 import type { NextPage } from "next";
-import { Calendar, Navbar, NewsGroup, Banner, Footer } from "../components";
-import Head from "next/head";
+import {
+  Calendar,
+  Navbar,
+  NewsGroup,
+  Banner,
+  Footer,
+  Apps,
+} from "../components";
+import { MainTitle, MetaTag } from "../components/shared";
 
 import { Container } from "@material-ui/core";
-import { MainTitle } from "../components/shared/MainTitle";
-import { Apps } from "../components/banner/Apps";
 
 const Home: NextPage = () => {
   return (
     <>
-      <Head>
-        <title>中壢大中官網</title>
-        <meta name="title" content="中壢大中官網" />
-        <meta name="description" content="您最值得信賴的網站" />
-
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://github.com/BWsix/CHLS" />
-        <meta property="og:title" content="中壢大中官網" />
-        <meta property="og:description" content="您最值得信賴的網站" />
-        <meta property="og:image" content="https://i.imgur.com/Bf3la7K.png" />
-
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://github.com/BWsix/CHLS" />
-        <meta property="twitter:title" content="中壢大中官網" />
-        <meta property="twitter:description" content="您最值得信賴的網站" />
-        <meta
-          property="twitter:image"
-          content="https://i.imgur.com/Bf3la7K.png"
-        />
-      </Head>
+      <MetaTag
+        title="中壢大中官網"
+        description="您最值得信賴的網站"
+        image="https://i.imgur.com/Bf3la7K.png"
+      />
 
       <Container maxWidth="lg">
         <Navbar

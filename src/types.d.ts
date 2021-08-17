@@ -27,3 +27,9 @@ type NewsDetail = {
   content: string;
   attachments: NewsAttachment[];
 };
+
+type MetaTag = {
+  title?: string;
+  description?: string;
+  image?: string;
+};
