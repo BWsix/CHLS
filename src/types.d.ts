@@ -29,7 +29,12 @@ type NewsDetail = {
 };
 
 type MetaTag = {
-  title?: string;
+  title: string;
   description?: string;
-  image?: string;
+  image: string;
+
+  website?: string;
+  facebook?: string;
+  instagram?: string;
+  github?: string;
 };

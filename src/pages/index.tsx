@@ -1,17 +1,29 @@
-import type { NextPage } from "next";
-import {
-  Calendar,
-  Navbar,
-  NewsGroup,
-  Banner,
-  Footer,
-  Apps,
-} from "../components";
+import { readdirSync, readFileSync } from "fs";
+import { join } from "path";
+import matter from "gray-matter";
+import { Calendar, Navbar, NewsGroup, Banner, Apps } from "../components";
 import { MainTitle, MetaTag } from "../components/shared";
+import { Clubs } from "../components/banner/Clubs";
 
 import { Container } from "@material-ui/core";
 
-const Home: NextPage = () => {
+export const getStaticProps = () => {
+  const paths = readdirSync("posts");
+
+  const metaTags = paths.map((path) => {
+    const file = readFileSync(join("posts", path));
+    const parsed = matter(file);
+    return parsed.data;
+  });
+  const slugs = paths.map((path) => path.replace(".md", ""));
+
+  return { props: { metaTags, slugs } };
+};
+
+const Home: React.FC<{ metaTags: MetaTag[]; slugs: string[] }> = ({
+  metaTags,
+  slugs,
+}) => {
   return (
     <>
       <MetaTag
@@ -22,8 +34,8 @@ const Home: NextPage = () => {
 
       <Container maxWidth="lg">
         <Navbar
-          title="中壢大中"
           sections={[
+            { title: "官方社團/校隊", url: "#clubs" },
             { title: "官方app", url: "#apps" },
             { title: "官方公告", url: "#news" },
             { title: "官方行事曆", url: "#calendar" },
@@ -38,6 +50,10 @@ const Home: NextPage = () => {
       </Container>
 
       <Container maxWidth="md">
+        <div id="clubs" />
+        <MainTitle title="官方社團/校隊" />
+        <Clubs metaTags={metaTags} slugs={slugs} />
+
         <div id="apps" />
         <MainTitle title="官方app" />
         <Apps />
@@ -50,10 +66,7 @@ const Home: NextPage = () => {
         <MainTitle title="官方行事曆" />
         <Calendar />
       </Container>
-
-      <Footer />
     </>
   );
 };
-
 export default Home;

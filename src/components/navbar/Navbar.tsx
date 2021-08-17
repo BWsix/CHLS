@@ -27,11 +27,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface NavbarProps {
-  sections: {
+  sections?: {
     title: string;
     url: string;
   }[];
-  title: string;
+  title?: string;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ sections, title }) => {
@@ -47,7 +47,7 @@ export const Navbar: React.FC<NavbarProps> = ({ sections, title }) => {
           noWrap
           className={classes.toolbarTitle}
         >
-          {title}
+          <Link href="/">{title || "中壢大中"}</Link>
         </Typography>
         <IconButton>
           <Link
@@ -60,24 +60,26 @@ export const Navbar: React.FC<NavbarProps> = ({ sections, title }) => {
           </Link>
         </IconButton>
       </Toolbar>
-      <Toolbar
-        component="nav"
-        variant="dense"
-        className={classes.toolbarSecondary}
-      >
-        {sections.map((section) => (
-          <Link
-            color="inherit"
-            noWrap
-            key={section.title}
-            variant="body2"
-            href={section.url}
-            className={classes.toolbarLink}
-          >
-            {section.title}
-          </Link>
-        ))}
-      </Toolbar>
+      {sections && (
+        <Toolbar
+          component="nav"
+          variant="dense"
+          className={classes.toolbarSecondary}
+        >
+          {sections.map((section) => (
+            <Link
+              color="inherit"
+              noWrap
+              key={section.title}
+              variant="body2"
+              href={section.url}
+              className={classes.toolbarLink}
+            >
+              {section.title}
+            </Link>
+          ))}
+        </Toolbar>
+      )}
     </React.Fragment>
   );
 };
