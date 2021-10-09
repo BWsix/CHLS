@@ -1,38 +1,35 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import useSWR from "swr";
 
 export const useGetNewsList = (uid: string) => {
-  const [prevUid, setPrevUid] = useState("");
-
   const [page, setPage] = useState(0);
   const [newsList, setNewsList] = useState<News[]>([]);
   const [totalPages, setTotalPages] = useState(0);
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const fetcher = (url: string, page: number, uid: string) => {
+    return axios.post(url, { page, uid }).then((res) => {
+      return res.data as NewsQuery;
+    });
+  };
+  const { data, isValidating, error } = useSWR(
+    ["/api/news", page, uid],
+    fetcher
+  );
 
   useEffect(() => {
-    const getNews = async () => {
-      try {
-        const res = await axios.post("/api/news", { page, uid });
-        const data: NewsQuery = res.data;
+    if (!data) return;
 
-        setNewsList(data.newsList);
-        setTotalPages(data.meta.totalPages);
-        setIsLoading(false);
-      } catch (err) {
-        setError(true);
-      }
-    };
+    setNewsList(data.newsList);
+    setTotalPages(data.meta.totalPages);
+  }, [data]);
 
-    if (uid !== prevUid) {
-      setPage(0);
-      setPrevUid(uid);
-      setIsLoading(true);
-    } else {
-      getNews();
-    }
-  }, [uid, prevUid, page]);
-
-  return { page, setPage, newsList, totalPages, isLoading, error };
+  return {
+    page,
+    setPage,
+    newsList,
+    totalPages,
+    isLoading: isValidating,
+    error,
+  };
 };
